@@ -1,0 +1,43 @@
+export default function Home() {
+  return (
+    <main className="min-h-screen bg-gradient-to-b from-black to-zinc-900 text-white p-6">
+      <h1 className="text-5xl font-bold mb-8 text-center">
+        AI Trend Intelligence Dashboard
+      </h1>
+
+      <div className="grid gap-6 md:grid-cols-3">
+
+        <div className="bg-zinc-800 p-6 rounded-3xl shadow-xl">
+          <h2 className="text-2xl font-bold mb-3">
+            Trending Products
+          </h2>
+
+          <p className="text-zinc-300">
+            Discover winning digital product ideas with high demand.
+          </p>
+        </div>
+
+        <div className="bg-zinc-800 p-6 rounded-3xl shadow-xl">
+          <h2 className="text-2xl font-bold mb-3">
+            Viral Niches
+          </h2>
+
+          <p className="text-zinc-300">
+            Track rapidly growing niches before competitors.
+          </p>
+        </div>
+
+        <div className="bg-zinc-800 p-6 rounded-3xl shadow-xl">
+          <h2 className="text-2xl font-bold mb-3">
+            AI Insights
+          </h2>
+
+          <p className="text-zinc-300">
+            Predict profitable opportunities using AI analysis.
+          </p>
+        </div>
+
+      </div>
+    </main>
+  );
+}

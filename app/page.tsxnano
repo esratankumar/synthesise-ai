@@ -1,0 +1,83 @@
+"use client";
+
+import { useState } from "react";
+
+export default function Home() {
+
+  const [search, setSearch] = useState("");
+  const [typingText, setTypingText] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const typeText = (text: string) => {
+
+    let index = 0;
+
+    setTypingText("");
+
+    const interval = setInterval(() => {
+
+      setTypingText((prev) => prev + text.charAt(index));
+
+      index++;
+
+      if (index >= text.length) {
+        clearInterval(interval);
+        setLoading(false);
+      }
+
+    }, 15);
+
+  };
+
+  const generateResponse = () => {
+
+    const query = search.toLowerCase();
+
+    setLoading(true);
+
+    setTimeout(() => {
+
+      if (query.includes("startup")) {
+
+        typeText(`
+🚀 TOP AI STARTUP IDEAS FOR 2026
+
+1. AI Influencer Agency
+🔥 Trend Score: 96%
+
+2. Faceless YouTube Automation
+🔥 Trend Score: 94%
+
+3. AI SaaS Platforms
+🔥 Trend Score: 98%
+
+4. AI Digital Products
+🔥 Trend Score: 95%
+
+💰 Monetization:
+• SaaS
+• Subscriptions
+• Automation Services
+• Digital Products
+
+🌎 Best Platforms:
+• YouTube
+• TikTok
+• Instagram
+• Gumroad
+• Whop
+
+⚡ Conclusion:
+This niche has massive future growth potential.
+`);
+
+      }
+
+      else if (query.includes("youtube")) {
+
+        typeText(`
+🎥 YOUTUBE AUTOMATION OPPORTUNITY
+
+• Faceless Shorts
+• AI Voiceovers
+•

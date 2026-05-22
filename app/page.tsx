@@ -1,65 +1,330 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
 export default function Home() {
+
+  const [search, setSearch] = useState("");
+  const [typingText, setTypingText] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const typeText = (text: string) => {
+
+    let index = 0;
+
+    setTypingText("");
+
+    const interval = setInterval(() => {
+
+      setTypingText((prev) => prev + text.charAt(index));
+
+      index++;
+
+      if (index >= text.length) {
+        clearInterval(interval);
+        setLoading(false);
+      }
+
+    }, 20);
+
+  };
+
+  const generateResponse = () => {
+
+    const query = search.toLowerCase();
+
+    setLoading(true);
+
+    if (query.includes("startup")) {
+
+      typeText(`
+🚀 TOP AI STARTUP IDEAS FOR 2026
+
+1. AI Influencer Agency
+🔥 Trend Score: 96%
+
+2. Faceless YouTube Automation
+🔥 Trend Score: 94%
+
+3. AI SaaS Platforms
+🔥 Trend Score: 98%
+
+💰 Monetization:
+Subscriptions, SaaS, Automation Services
+
+🌎 Best Platforms:
+YouTube, TikTok, Whop, Gumroad
+
+⚡ Conclusion:
+This niche has massive future growth potential.
+`);
+
+    }
+
+    else if (query.includes("youtube")) {
+
+      typeText(`
+🎥 YOUTUBE AUTOMATION OPPORTUNITY
+
+• Faceless Shorts
+• AI Voiceovers
+• Viral Storytelling
+• Automated Editing
+
+🔥 Growth Potential: Exploding
+💰 Monetization Potential: Very High
+`);
+
+    }
+
+    else if (query.includes("money")) {
+
+      typeText(`
+💸 AI MONEY OPPORTUNITIES
+
+• AI SaaS
+• Affiliate Marketing
+• AI Content Agency
+• AI Automation Services
+
+📈 Profitability Score: 9.8/10
+`);
+
+    }
+
+    else {
+
+      typeText(`
+⚡ SYNTHESISE AI detected a high-growth market opportunity with strong future scalability.
+`);
+
+    }
+
+  };
+
+  const trendData = [
+    { month: "Jan", score: 20 },
+    { month: "Feb", score: 35 },
+    { month: "Mar", score: 50 },
+    { month: "Apr", score: 70 },
+    { month: "May", score: 90 },
+    { month: "Jun", score: 120 },
+  ];
+
+  const ideas = [
+    {
+      title: "AI Influencer Agency",
+      desc: "AI-generated influencers are becoming billion-dollar assets.",
+      score: "96%",
+      color: "text-cyan-400",
+    },
+    {
+      title: "Faceless YouTube Automation",
+      desc: "AI automation is scaling YouTube channels globally.",
+      score: "94%",
+      color: "text-green-400",
+    },
+    {
+      title: "AI SaaS Platforms",
+      desc: "Subscription-based AI software is dominating markets.",
+      score: "98%",
+      color: "text-fuchsia-400",
+    },
+    {
+      title: "AI Digital Products",
+      desc: "AI ebooks and prompt products are exploding worldwide.",
+      score: "93%",
+      color: "text-yellow-400",
+    },
+  ];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+
+    <main className="min-h-screen bg-black text-white flex">
+
+      <aside className="w-72 bg-zinc-950 border-r border-zinc-800 p-6 hidden md:flex flex-col">
+
+        <h1 className="text-3xl font-bold text-cyan-400 mb-10">
+          SYNTHESISE AI
+        </h1>
+
+        <nav className="space-y-4">
+
+          <div className="bg-zinc-900 p-4 rounded-2xl">
+            🚀 AI Dashboard
+          </div>
+
+          <div className="bg-zinc-900 p-4 rounded-2xl">
+            📈 Trend Intelligence
+          </div>
+
+          <div className="bg-zinc-900 p-4 rounded-2xl">
+            💰 Startup Ideas
+          </div>
+
+          <div className="bg-zinc-900 p-4 rounded-2xl">
+            🤖 AI Automation
+          </div>
+
+        </nav>
+
+      </aside>
+
+      <section className="flex-1 p-8">
+
+        <div className="max-w-6xl mx-auto">
+
+          <h1 className="text-6xl font-bold text-cyan-400 mb-4">
+            SYNTHESISE AI
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+          <p className="text-zinc-400 text-xl mb-10">
+            Futuristic AI-powered business intelligence platform.
           </p>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+
+            <div className="bg-zinc-900 border border-cyan-500 p-8 rounded-3xl">
+              <h2 className="text-zinc-400 mb-4">AI Opportunities</h2>
+              <p className="text-5xl font-bold text-cyan-400">842</p>
+            </div>
+
+            <div className="bg-zinc-900 border border-green-500 p-8 rounded-3xl">
+              <h2 className="text-zinc-400 mb-4">Trend Accuracy</h2>
+              <p className="text-5xl font-bold text-green-400">97%</p>
+            </div>
+
+            <div className="bg-zinc-900 border border-purple-500 p-8 rounded-3xl">
+              <h2 className="text-zinc-400 mb-4">Market Growth</h2>
+              <p className="text-5xl font-bold text-purple-400">+340%</p>
+            </div>
+
+          </div>
+
+          <div className="bg-zinc-900 border border-cyan-500 rounded-3xl p-8 mb-12">
+
+            <h2 className="text-3xl font-bold text-cyan-400 mb-6">
+              Ask SYNTHESISE AI
+            </h2>
+
+            <div className="flex flex-col md:flex-row gap-4">
+
+              <input
+                type="text"
+                placeholder="Ask about startups, YouTube, money..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="flex-1 bg-black border border-zinc-700 rounded-2xl px-5 py-4 text-white outline-none"
+              />
+
+              <button
+                onClick={generateResponse}
+                className="bg-cyan-500 hover:bg-cyan-400 transition text-black font-bold px-8 py-4 rounded-2xl"
+              >
+                Analyze
+              </button>
+
+            </div>
+
+            {(loading || typingText) && (
+
+              <div className="mt-8 bg-black border border-zinc-700 rounded-2xl p-6">
+
+                {loading ? (
+
+                  <p className="text-cyan-400 text-xl animate-pulse">
+                    SYNTHESISE AI is analyzing global trends...
+                  </p>
+
+                ) : (
+
+                  <p className="text-zinc-200 text-lg leading-relaxed whitespace-pre-line">
+                    {typingText}
+                  </p>
+
+                )}
+
+              </div>
+
+            )}
+
+          </div>
+
+          <div className="bg-zinc-900 border border-cyan-500 rounded-3xl p-8 mb-12">
+
+            <h2 className="text-3xl font-bold text-cyan-400 mb-8">
+              AI Trend Analytics
+            </h2>
+
+            <div className="w-full h-[320px]">
+
+              <ResponsiveContainer width="100%" height="100%">
+
+                <LineChart data={trendData}>
+
+                  <XAxis dataKey="month" stroke="#ffffff" />
+
+                  <YAxis stroke="#ffffff" />
+
+                  <Tooltip />
+
+                  <Line
+                    type="monotone"
+                    dataKey="score"
+                    stroke="#06b6d4"
+                    strokeWidth={4}
+                  />
+
+                </LineChart>
+
+              </ResponsiveContainer>
+
+            </div>
+
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+
+            {ideas.map((idea, index) => (
+
+              <div
+                key={index}
+                className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 hover:border-cyan-400 transition-all duration-300 hover:scale-105"
+              >
+
+                <h2 className="text-3xl font-bold mb-4">
+                  {idea.title}
+                </h2>
+
+                <p className="text-zinc-400 text-lg leading-8 mb-6">
+                  {idea.desc}
+                </p>
+
+                <p className={`text-2xl font-bold ${idea.color}`}>
+                  Opportunity Score: {idea.score}
+                </p>
+
+              </div>
+
+            ))}
+
+          </div>
+
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+
+      </section>
+
+    </main>
+
   );
+
 }
