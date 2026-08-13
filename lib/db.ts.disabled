@@ -1,0 +1,48 @@
+import initSqlJs from "sql.js";
+import fs from "fs";
+import path from "path";
+
+const dbPath = path.join(process.cwd(), "data", "chat.db");
+
+let SQL: any;
+let db: any;
+
+export async function getDB() {
+  if (db) return db;
+
+  SQL = await initSqlJs({});
+
+  if (fs.existsSync(dbPath)) {
+    const fileBuffer = fs.readFileSync(dbPath);
+    db = new SQL.Database(fileBuffer);
+  } else {
+    db = new SQL.Database();
+
+    db.run(`
+      CREATE TABLE IF NOT EXISTS chats (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT,
+        createdAt TEXT
+      );
+
+      CREATE TABLE IF NOT EXISTS messages (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        chatId INTEGER,
+        role TEXT,
+        content TEXT,
+        createdAt TEXT
+      );
+    `);
+
+    saveDB();
+  }
+
+  return db;
+}
+
+export function saveDB() {
+  if (!db) return;
+
+  const data = db.export();
+  fs.writeFileSync(dbPath, Buffer.from(data));
+}

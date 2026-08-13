@@ -1,0 +1,27 @@
+import { getDB, saveDB } from "./db";
+
+export async function createChat(title: string) {
+  const db = await getDB();
+
+  db.run(
+    "INSERT INTO chats (title, createdAt) VALUES (?, ?)",
+    [title, new Date().toISOString()]
+  );
+
+  saveDB();
+}
+
+export async function saveMessage(
+  chatId: number,
+  role: string,
+  content: string
+) {
+  const db = await getDB();
+
+  db.run(
+    "INSERT INTO messages (chatId, role, content, createdAt) VALUES (?, ?, ?, ?)",
+    [chatId, role, content, new Date().toISOString()]
+  );
+
+  saveDB();
+}

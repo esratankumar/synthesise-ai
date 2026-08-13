@@ -39,3 +39,19 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/lib/generated/prisma
+
+# Local application data
+/storage/
+
+# Logs
+*.log
+
+# Local test files
+test-groq.js
+
+# Temporary/editor backup files
+*.save
+*.bak
+*.tmp

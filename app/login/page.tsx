@@ -1,68 +1,104 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
-export default function LoginPage() {
+export default function Login() {
 
-  const router = useRouter();
+const router = useRouter();
+  const [email,setEmail]=useState("");
+  const [password,setPassword]=useState("");
+  const [message,setMessage]=useState("");
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  async function login(){
 
-  const login = () => {
+    const res = await fetch("/api/auth/login",{
 
-    if (email && password) {
+      method:"POST",
 
-      localStorage.setItem("user", email);
+      headers:{
+        "Content-Type":"application/json"
+      },
 
-      router.push("/dashboard");
+      body:JSON.stringify({
+        email,
+        password
+      })
 
-    }
+    });
 
-  };
+    const data = await res.json();
 
-  return (
+if (data.token) {
 
-    <main className="min-h-screen bg-black text-white flex items-center justify-center p-10">
-
-      <div className="bg-zinc-900 border border-cyan-500 rounded-3xl p-10 w-full max-w-xl">
-
-        <h1 className="text-5xl font-bold text-cyan-400 mb-8 text-center">
-          SYNTHESISE AI
-        </h1>
-
-        <p className="text-zinc-400 text-center mb-10">
-          Login to your AI intelligence platform
-        </p>
-
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full bg-black border border-cyan-500 rounded-2xl px-6 py-4 mb-6 text-white outline-none"
-        />
-
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full bg-black border border-cyan-500 rounded-2xl px-6 py-4 mb-8 text-white outline-none"
-        />
-
-        <button
-          onClick={login}
-          className="w-full bg-cyan-500 hover:bg-cyan-400 transition text-black font-bold py-4 rounded-2xl"
-        >
-          Login
-        </button>
-
-      </div>
-
-    </main>
-
+  localStorage.setItem(
+    "auth_token",
+    data.token
   );
+
+  localStorage.setItem(
+    "user",
+    JSON.stringify(data.user)
+  );
+
+  setMessage("Login successful!");
+
+  router.push("/dashboard");
+
+} else {
+
+  setMessage(data.message);
+
+}
+  }
+
+  return(
+
+<div className="min-h-screen flex items-center justify-center bg-black text-white">
+
+<div className="w-full max-w-md rounded-2xl bg-zinc-900 p-8">
+
+<h1 className="text-3xl font-bold mb-6">
+
+Login
+
+</h1>
+
+<input
+className="w-full p-3 mb-4 rounded bg-zinc-800"
+placeholder="Email"
+value={email}
+onChange={(e)=>setEmail(e.target.value)}
+/>
+
+<input
+type="password"
+className="w-full p-3 mb-6 rounded bg-zinc-800"
+placeholder="Password"
+value={password}
+onChange={(e)=>setPassword(e.target.value)}
+/>
+
+<button
+onClick={login}
+className="w-full p-3 rounded bg-blue-600"
+>
+
+Login
+
+</button>
+
+<p className="mt-6 text-green-400">
+
+{message}
+
+</p>
+
+
+</div>
+
+</div>
+
+);
 
 }
