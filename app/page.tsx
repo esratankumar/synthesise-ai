@@ -267,7 +267,7 @@ This niche has massive future growth potential.
 
             <div className="w-full h-[320px]">
 
-              <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height={320}>
 
                 <LineChart data={trendData}>
 

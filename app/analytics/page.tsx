@@ -116,7 +116,7 @@ export default function AnalyticsPage() {
 
           <div className="w-full h-[400px]">
 
-            <ResponsiveContainer width="100%" height="100%">
+           <ResponsiveContainer width="100%" height={400}>
 
               <LineChart data={revenueData}>
 

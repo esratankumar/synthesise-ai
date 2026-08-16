@@ -36,7 +36,7 @@ export default function RevenueAnalytics() {
 
       <div style={{ width: "100%", height: 320 }}>
 
-        <ResponsiveContainer>
+      <ResponsiveContainer width="100%" height={320}>
 
           <LineChart data={data}>
 
