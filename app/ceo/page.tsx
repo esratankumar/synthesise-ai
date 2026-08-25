@@ -179,7 +179,7 @@ export default function CEOPage() {
               AI Systems Status
             </h2>
 
-            <div className="space-y-3 md:space-y-3 md:space-y-6">
+            <div className="space-y-3 md:space-y-6">
 
               {aiSystems.map((system, index) => (
 
@@ -188,7 +188,7 @@ export default function CEOPage() {
                   className="flex items-center justify-between bg-black rounded-2xl p-3 md:p-5"
                 >
 
-                  <p className="text-base sm:text-lg md:text-base sm:text-lg md:text-2xl text-white">
+                  <p className="text-base sm:text-lg md:text-2xl text-white">
                     {system.name}
                   </p>
 
@@ -206,13 +206,13 @@ export default function CEOPage() {
 
         </div>
 
-        <div className="bg-zinc-900 border border-purple-500 rounded-3xl p-5 md:p-10 mt-6 md:mt-0">
+        <div className="bg-zinc-900 border border-purple-500 rounded-3xl p-5 sm:p-6 md:p-10 mt-6 md:mt-0">
 
-          <h2 className="text-4xl font-bold text-purple-400 mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-purple-400 mb-5 md:mb-8">
             AI CEO Insights
           </h2>
 
-          <div className="space-y-3 md:space-y-3 md:space-y-6 text-xl text-zinc-300">
+          <div className="space-y-3 md:space-y-6 text-xl text-zinc-300">
 
             <p>
               🚀 AI marketplace revenue increased by 38% this month.
