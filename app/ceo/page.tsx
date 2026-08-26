@@ -59,11 +59,13 @@ export default function CEOPage() {
 
     <main className="min-h-screen bg-black text-white flex w-full overflow-x-hidden relative">
        <Sidebar />
-      <ThemeToggle />
 
-      <div className="flex-1 min-w-0 w-full p-4 sm:p-6 md:p-10 overflow-y-auto overflow-x-hidden pt-20 md:pt-10">
+      <div className="flex-1 min-w-0 w-full p-4 sm:p-6 md:p-10 overflow-y-auto overflow-x-hidden pt-2 md:pt-4 pb-24 md:pb-10">
+        <div className="flex justify-end mb-4">
+          <ThemeToggle />
+        </div>
 
-<h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-cyan-400 mb-5 pr-20 md:pr-0">
+<h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-cyan-400 mb-5">
           AI CEO Command Center
         </h1>
 
@@ -71,52 +73,68 @@ export default function CEOPage() {
           Monitor and control your complete AI business ecosystem.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-8 md:mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mb-8 md:mb-16">
 
-          <div className="bg-zinc-900 border border-cyan-500 rounded-3xl p-4 sm:p-5 md:p-8 h-auto">
+          <div className="bg-zinc-900 border border-cyan-500 rounded-3xl p-4 sm:p-5 md:p-8 h-auto transition-all duration-300 hover:border-cyan-300 hover:-translate-y-1">
 
-            <h2 className="text-zinc-400 text-base md:text-xl mb-2 md:mb-4">
+            <h2 className="text-zinc-400 text-base md:text-xl mb-2">
               Total Revenue
             </h2>
 
-            <p className="text-4xl md:text-5xl font-bold text-green-400">
+            <p className="text-3xl md:text-5xl font-bold text-green-400">
               $74,320
             </p>
 
+            <p className="text-sm md:text-base text-green-400 mt-2 font-semibold">
+              ↑ 12.8% this month
+            </p>
+
           </div>
 
-          <div className="bg-zinc-900 border border-purple-500 rounded-3xl p-4 sm:p-5 md:p-8 h-auto">
+          <div className="bg-zinc-900 border border-purple-500 rounded-3xl p-4 sm:p-5 md:p-8 h-auto transition-all duration-300 hover:border-purple-300 hover:-translate-y-1">
 
-            <h2 className="text-zinc-400 text-base md:text-xl mb-2 md:mb-4">
+            <h2 className="text-zinc-400 text-base md:text-xl mb-2">
               Active AI Agents
             </h2>
 
-            <p className="text-4xl md:text-5xl font-bold text-purple-400">
+            <p className="text-3xl md:text-5xl font-bold text-purple-400">
               12
             </p>
 
-          </div>
-
-          <div className="bg-zinc-900 border border-yellow-500 rounded-3xl p-4 sm:p-5 md:p-8 h-auto">
-
-            <h2 className="text-zinc-400 text-base md:text-xl mb-2 md:mb-4">
-              Marketplace Sales
-            </h2>
-
-            <p className="text-4xl md:text-5xl font-bold text-yellow-400">
-              284
+            <p className="text-sm md:text-base text-green-400 mt-2 font-semibold">
+              ↑ 3 active
             </p>
 
           </div>
 
-          <div className="bg-zinc-900 border border-green-500 rounded-3xl p-4 sm:p-5 md:p-8 h-auto">
+          <div className="bg-zinc-900 border border-yellow-500 rounded-3xl p-4 sm:p-5 md:p-8 h-auto transition-all duration-300 hover:border-yellow-300 hover:-translate-y-1">
 
-            <h2 className="text-zinc-400 text-base md:text-xl mb-2 md:mb-4">
+            <h2 className="text-zinc-400 text-base md:text-xl mb-2">
+              Marketplace Sales
+            </h2>
+
+            <p className="text-3xl md:text-5xl font-bold text-yellow-400">
+              284
+            </p>
+
+            <p className="text-sm md:text-base text-green-400 mt-2 font-semibold">
+              ↑ 18.4% this month
+            </p>
+
+          </div>
+
+          <div className="bg-zinc-900 border border-green-500 rounded-3xl p-4 sm:p-5 md:p-8 h-auto transition-all duration-300 hover:border-green-300 hover:-translate-y-1">
+
+            <h2 className="text-zinc-400 text-base md:text-xl mb-2">
               Automation Tasks
             </h2>
 
-            <p className="text-4xl md:text-5xl font-bold text-cyan-400">
+            <p className="text-3xl md:text-5xl font-bold text-cyan-400">
               1,492
+            </p>
+
+            <p className="text-sm md:text-base text-green-400 mt-2 font-semibold">
+              ↑ 24.6% this month
             </p>
 
           </div>
