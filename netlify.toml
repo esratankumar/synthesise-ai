@@ -1,0 +1,5 @@
+[build]
+  # Prisma is not used by the app (the schema has no models), so `prisma generate`
+  # would fail the build. Run the Next.js build directly.
+  command = "npm run build"
+  publish = ".next"

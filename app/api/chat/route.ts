@@ -1,6 +1,6 @@
 import Groq from "groq-sdk";
 
-const groq = new Groq({
+const getGroq = () => new Groq({
   apiKey: process.env.GROQ_API_KEY,
 });
 
@@ -12,7 +12,7 @@ export async function POST(req: Request) {
 
     const userMessage = body.message;
 
-    const completion = await groq.chat.completions.create({
+    const completion = await getGroq().chat.completions.create({
 
       messages: [
 
