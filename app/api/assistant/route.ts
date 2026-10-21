@@ -2,10 +2,10 @@ import { NextResponse } from "next/server";
 import Groq from "groq-sdk";
 import { tavily } from "@tavily/core";
 
-const groq = new Groq({
+const getGroq = () => new Groq({
   apiKey: process.env.GROQ_API_KEY,
 });
-const tvly = tavily({
+const getTvly = () => tavily({
   apiKey: process.env.TAVILY_API_KEY!,
 });
 
@@ -98,7 +98,7 @@ console.log("WEB SEARCH CHECK:", needsWebSearch);
 
 if (needsWebSearch) {
   try {
-const search = await tvly.search(userMessage, {
+const search = await getTvly().search(userMessage, {
   maxResults: 12,
   searchDepth: "advanced",
   topic: "news",
@@ -242,7 +242,7 @@ If the answer is not in the search results, say:
     let model = chooseModel(userMessage);
 console.log("MODEL:", model);
 const run = async (selectedModel: string) => {
-  return await groq.chat.completions.create({
+  return await getGroq().chat.completions.create({
     model: selectedModel,
     messages: [
       ...recentMessages,

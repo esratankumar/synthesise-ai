@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { tavily } from "@tavily/core";
 
-const tvly = tavily({
+const getTvly = () => tavily({
   apiKey: process.env.TAVILY_API_KEY!,
 });
 
@@ -21,7 +21,7 @@ export async function GET() {
     const opportunities = [];
 
     for (const keyword of KEYWORDS) {
-      const search = await tvly.search(keyword, {
+      const search = await getTvly().search(keyword, {
         maxResults: 3,
         searchDepth: "basic",
       });

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { tavily } from "@tavily/core";
 import { assignTask } from "@/lib/enterprise/collaborationEngine";
 
-const tvly = tavily({
+const getTvly = () => tavily({
   apiKey: process.env.TAVILY_API_KEY!,
 });
 
@@ -22,7 +22,7 @@ export async function GET() {
     const results = [];
 
     for (const trend of TRENDS) {
-      const search = await tvly.search(trend, {
+      const search = await getTvly().search(trend, {
         maxResults: 5,
         searchDepth: "basic",
       });
