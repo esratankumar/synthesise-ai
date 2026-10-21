@@ -38,67 +38,50 @@ export default function Home() {
 
   };
 
-  const generateResponse = () => {
+  
+const generateResponse = async () => {
+  const prompt = search.trim();
 
-    const query = search.toLowerCase();
+  if (!prompt) {
+    setTypingText("Please enter a question first.");
+    return;
+  }
 
-    setLoading(true);
+  setLoading(true);
+  setTypingText("");
 
-    if (query.includes("startup")) {
+  try {
+    const response = await fetch("/api/ai", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ prompt }),
+    });
 
-      typeText(`
-🚀 TOP AI STARTUP IDEAS FOR 2026
+    const data = await response.json();
 
-1. AI Influencer Agency
-🔥 Trend Score: 96%
-
-2. Faceless YouTube Automation
-🔥 Trend Score: 94%
-
-3. AI SaaS Platforms
-🔥 Trend Score: 98%
-
-💰 Monetization:
-Subscriptions, SaaS, Automation Services
-
-🌎 Best Platforms:
-YouTube, TikTok, Whop, Gumroad
-
-⚡ Conclusion:
-This niche has massive future growth potential.
-`);
-
+    if (!response.ok) {
+      throw new Error(
+        data.error || "Unable to generate a response."
+      );
     }
 
-    else if (query.includes("youtube")) {
-
-      typeText(`
-🎥 YOUTUBE AUTOMATION OPPORTUNITY
-
-• Faceless Shorts
-• AI Voiceovers
-• Viral Storytelling
-• Automated Editing
-
-🔥 Growth Potential: Exploding
-💰 Monetization Potential: Very High
-`);
-
+    if (typeof data.result !== "string" || !data.result.trim()) {
+      throw new Error("The AI returned an empty response.");
     }
 
-    else if (query.includes("money")) {
-
-      typeText(`
-💸 AI MONEY OPPORTUNITIES
-
-• AI SaaS
-• Affiliate Marketing
-• AI Content Agency
-• AI Automation Services
-
-📈 Profitability Score: 9.8/10
-`);
-
+    setTypingText(data.result);
+  } catch (error) {
+    setTypingText(
+      error instanceof Error
+        ? `Sorry, the request failed: ${error.message}`
+        : "Sorry, something went wrong. Please try again."
+    );
+  } finally {
+    setLoading(false);
+  }
+};
     }
 
     else {
